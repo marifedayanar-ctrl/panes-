@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panadería El Trigal · Pan artesanal recién horneado</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ===== RESET Y VARIABLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #b87333;
+            --primary-dark: #8b572a;
+            --secondary: #f5e6d3;
+            --dark: #3a2a1a;
+            --text-dark: #2c2018;
+            --text-light: #7a6a5a;
+            --white: #ffffff;
+            --cream: #fdf8f0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--white);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* ===== UTILIDADES ===== */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.85rem 2.2rem;
+            background-color: var(--primary);
+            color: var(--white);
+            border: 2px solid var(--primary);
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-weight: 500;
+            border-radius: 4px;
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: var(--primary);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.6rem;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title .divider {
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary);
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: var(--text-light);
+            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            background-color: var(--white);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.06);
+        }
+
+        .header-flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: var(--dark);
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i {
+            color: var(--primary);
+            font-size: 1.6rem;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        /* ===== NAV CON 4 MENÚS ===== */
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links a {
+            transition: color 0.3s;
+            position: relative;
+            padding: 0.3rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Menú desplegable de Productos */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown > a {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .dropdown > a i {
+            font-size: 0.7rem;
+            transition: transform 0.3s;
+        }
+
+        .dropdown:hover > a i {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--white);
+            min-width: 200px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 6px;
+            padding: 0.8rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            border-top: 3px solid var(--primary);
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu li a {
+            display: block;
+            padding: 0.6rem 1.5rem;
+            font-size: 0.9rem;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .dropdown-menu li a::after {
+            display: none;
+        }
+
+        .dropdown-menu li a:hover {
+            background-color: var(--secondary);
+            color: var(--primary);
+        }
+
+        .icons {
+            display: flex;
+            gap: 1.3rem;
+            font-size: 1.15rem;
+            color: var(--text-dark);
+        }
+
+        .icons i {
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .icons i:hover {
+            color: var(--primary);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--dark);
+            background: none;
+            border: none;
+        }
+
+        /* ===== BANNER / HERO CON PAN ===== */
+        .hero {
+            height: 92vh;
+            min-height: 550px;
+            background: linear-gradient(rgba(58, 42, 26, 0.55), rgba(58, 42, 26, 0.7)), url('https://images.unsplash.com/photo-1549931319-a545dcf3bc73?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 1rem;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 780px;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background-color: rgba(184, 115, 51, 0.9);
+            color: var(--white);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .hero-content h1 {
+            font-size: 4.2rem;
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 1.2rem;
+            text-shadow: 0 3px 15px rgba(0,0,0,0.4);
+        }
+
+        .hero-content h1 span {
+            color: #ffd89b;
+            font-style: italic;
+        }
+
+        .hero-content p {
+            font-size: 1.15rem;
+            font-weight: 300;
+            margin-bottom: 2.2rem;
+            letter-spacing: 1px;
+            color: #f5e6d3;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero .btn-outline {
+            color: var(--white);
+            border-color: var(--white);
+        }
+
+        .hero .btn-outline:hover {
+            background-color: var(--white);
+            color: var(--primary-dark);
+        }
+
+        /* Redes sociales en el banner */
+        .hero-social {
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+        }
+
+        .hero-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            color: var(--white);
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .hero-social a:hover {
+            background-color: #ffd89b;
+            color: var(--dark);
+            border-color: #ffd89b;
+            transform: translateY(-5px) scale(1.1);
+        }
+
+        /* ===== INFO RÁPIDA ===== */
+        .info-bar {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 1.2rem 0;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            text-align: center;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            font-size: 0.95rem;
+        }
+
+        .info-item i {
+            font-size: 1.4rem;
+            color: #ffd89b;
+        }
+
+        /* ===== PRODUCTOS ===== */
+        .products {
+            padding: 5rem 0;
+            background-color: var(--white);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background-color: var(--cream);
+            text-align: center;
+            padding: 1.5rem 1rem 2rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #f0e6d6;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 35px rgba(184, 115, 51, 0.15);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 1.2rem;
+        }
+
+        .product-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.4rem;
+            color: var(--dark);
+        }
+
+        .product-card .price {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 1.15rem;
+            margin-bottom: 1.2rem;
+            letter-spacing: 0.5px;
+        }
+
+        .product-card .btn {
+            padding: 0.5rem 1.8rem;
+            font-size: 0.8rem;
+        }
+
+        /* ===== SOBRE NOSOTROS ===== */
+        .about {
+            padding: 5rem 0;
+            background-color: var(--secondary);
+        }
+
+        .about-flex {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-text h2 {
+            font-size: 2.6rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .about-text .divider {
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary);
+            margin-bottom: 1.5rem;
+            border-radius: 2px;
+        }
+
+        .about-text p {
+            margin-bottom: 1.2rem;
+            color: var(--text-light);
+            font-weight: 300;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(58, 42, 26, 0.15);
+        }
+
+        /* ===== SERVICIOS ===== */
+        .services {
+            padding: 5rem 0;
+            background-color: var(--white);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2.5rem;
+            text-align: center;
+        }
+
+        .service-item {
+            padding: 1.5rem 1rem;
+        }
+
+        .service-item i {
+            font-size: 2.8rem;
+            color: var(--primary);
+            margin-bottom: 1.2rem;
+        }
+
+        .service-item h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.6rem;
+            color: var(--dark);
+        }
+
+        .service-item p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            font-weight: 300;
+        }
+
+        /* ===== TESTIMONIOS ===== */
+        .testimonials {
+            padding: 5rem 0;
+            background-color: var(--cream);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.04);
+            text-align: center;
+            border-bottom: 4px solid transparent;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+
+        .testimonial-card:hover {
+            border-bottom-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .testimonial-card i {
+            color: #e0c9a6;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .testimonial-card h4 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--dark);
+        }
+
+        /* ===== NEWSLETTER / CONTACTO ===== */
+        .newsletter {
+            padding: 4.5rem 0;
+            background: linear-gradient(135deg, var(--dark), #5a3f28);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .newsletter h3 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .newsletter p {
+            color: #e0d0bd;
+            max-width: 520px;
+            margin: 0 auto 2rem;
+            font-weight: 300;
+        }
+
+        .newsletter-form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.6rem;
+            max-width: 520px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            min-width: 250px;
+            padding: 0.9rem 1.2rem;
+            border: 1px solid #6a5038;
+            background-color: rgba(255,255,255,0.08);
+            color: var(--white);
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.3s;
+            border-radius: 4px;
+        }
+
+        .newsletter-form input:focus {
+            border-color: #ffd89b;
+        }
+
+        .newsletter-form input::placeholder {
+            color: #c9b8a3;
+        }
+
+        .newsletter-form .btn {
+            background-color: #ffd89b;
+            border-color: #ffd89b;
+            color: var(--dark);
+        }
+
+        .newsletter-form .btn:hover {
+            background-color: transparent;
+            color: #ffd89b;
+        }
+
+        /* Redes sociales en la sección de contacto */
+        .contact-social {
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        .contact-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: var(--white);
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-social a:hover {
+            background-color: #ffd89b;
+            color: var(--dark);
+            border-color: #ffd89b;
+            transform: translateY(-5px);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background-color: #241a10;
+            color: #b0a090;
+            padding: 3.5rem 0 1.5rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            font-size: 1.2rem;
+            margin-bottom: 1.2rem;
+            font-weight: 500;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.6rem;
+            font-size: 0.9rem;
+        }
+
+        .footer-col ul li a {
+            transition: color 0.3s;
+        }
+
+        .footer-col ul li a:hover {
+            color: #ffd89b;
+        }
+
+        .footer-col p {
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background-color: #3a2a1a;
+            color: #d0c0a8;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid #3a2a1a;
+            font-size: 0.8rem;
+            color: #7a6a5a;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .hero-content h1 {
+                font-size: 3.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-flex {
+                flex-wrap: wrap;
+            }
+
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+                padding: 1.5rem 0 0.5rem;
+                border-top: 1px solid #eee;
+                margin-top: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .dropdown {
+                width: 100%;
+            }
+
+            .dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                background-color: var(--secondary);
+                border-top: none;
+                border-left: 3px solid var(--primary);
+                margin-top: 0.5rem;
+                max-height: 0;
+                overflow: hidden;
+                padding: 0;
+                transition: max-height 0.3s ease;
+            }
+
+            .dropdown.open .dropdown-menu {
+                max-height: 300px;
+                padding: 0.5rem 0;
+            }
+
+            .dropdown-menu li a {
+                padding: 0.5rem 1.5rem;
+            }
+
+            .menu-toggle {
+                display: block;
+                order: 1;
+            }
+
+            .logo {
+                order: 0;
+                font-size: 1.6rem;
+            }
+
+            .icons {
+                order: 2;
+                gap: 1rem;
+            }
+
+            .hero {
+                height: 80vh;
+            }
+
+            .hero-content h1 {
+                font-size: 2.4rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .about-flex {
+                gap: 2rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .newsletter-form input,
+            .newsletter-form .btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 1.9rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                padding: 0.75rem 1.6rem;
+                font-size: 0.8rem;
+            }
+
+            .product-grid,
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-social a {
+                width: 42px;
+                height: 42px;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header>
+        <div class="container header-flex">
+            <div class="logo">
+                <i class="fas fa-bread-slice"></i>
+                El <span>Trigal</span>
+            </div>
+
+            <!-- MENÚ CON 4 OPCIONES -->
+            <nav class="nav-links" id="navLinks">
+                <a href="#inicio">Inicio</a>
+
+                <!-- Menú desplegable Productos -->
+                <div class="dropdown">
+                    <a href="#productos">Productos <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#productos">Panes</a></li>
+                        <li><a href="#productos">Pasteles</a></li>
+                        <li><a href="#productos">Bollería</a></li>
+                        <li><a href="#productos">Galletas</a></li>
+                    </ul>
+                </div>
+
+                <a href="#nosotros">Nosotros</a>
+                <a href="#contacto">Contacto</a>
+            </nav>
+
+            <div class="icons">
+                <i class="fas fa-search"></i>
+                <i class="far fa-heart"></i>
+                <i class="fas fa-shopping-basket"></i>
+            </div>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- ===== BANNER / HERO CON PAN Y REDES SOCIALES ===== -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <span class="hero-badge">Horneado cada mañana</span>
+            <h1>El auténtico sabor del <span>pan artesanal</span></h1>
+            <p>Masa madre, ingredientes naturales y el cariño de siempre. Descubre nuestra selección de panes, pasteles y bollería recién horneados.</p>
+            <div class="hero-buttons">
+                <a href="#productos" class="btn">Ver productos</a>
+                <a href="#contacto" class="btn btn-outline">Visítanos</a>
+            </div>
+
+            <!-- REDES SOCIALES DEL BANNER -->
+            <div class="hero-social">
+                <a href="https://es.wikipedia.org/wiki/Pan" target="_blank" title="Wikipedia del Pan" aria-label="Wikipedia del Pan">
+                    <i class="fab fa-wikipedia-w"></i>
+                </a>
+                <a href="https://www.instagram.com/explore/tags/panaderia/" target="_blank" title="Instagram de Panadería" aria-label="Instagram de Panadería">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.facebook.com/search/top?q=panaderia" target="_blank" title="Facebook de Panadería" aria-label="Facebook de Panadería">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.pinterest.com/search/pins/?q=pan%20artesanal" target="_blank" title="Pinterest de Pan" aria-label="Pinterest de Pan">
+                    <i class="fab fa-pinterest-p"></i>
+                </a>
+                <a href="https://www.youtube.com/results?search_query=pan+artesanal" target="_blank" title="YouTube de Pan" aria-label="YouTube de Pan">
+                    <i class="fab fa-youtube"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== INFO RÁPIDA ===== -->
+    <section class="info-bar">
+        <div class="container info-grid">
+            <div class="info-item">
+                <i class="fas fa-clock"></i>
+                <span>Abierto de 6:00 a 21:00</span>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-truck"></i>
+                <span>Envío a domicilio gratis</span>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-seedling"></i>
+                <span>100% ingredientes naturales</span>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-award"></i>
+                <span>Más de 30 años de tradición</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PRODUCTOS ===== -->
+    <section class="products" id="productos">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestros Productos</h2>
+                <div class="divider"></div>
+                <p>Recién salidos del horno, elaborados con recetas tradicionales y mucho amor.</p>
+            </div>
+
+            <div class="product-grid">
+                <div class="product-card">
+                    <img class="product-img" src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=2072&auto=format&fit=crop" alt="Pan de masa madre">
+                    <h3>Pan de Masa Madre</h3>
+                    <p class="price">$4.50</p>
+                    <a href="#" class="btn btn-outline">Ver más</a>
+                </div>
+                <div class="product-card">
+                    <img class="product-img" src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=80&w=2072&auto=format&fit=crop" alt="Croissants de mantequilla">
+                    <h3>Croissants de Mantequilla</h3>
+                    <p class="price">$2.80</p>
+                    <a href="#" class="btn btn-outline">Ver más</a>
+                </div>
+                <div class="product-card">
+                    <img class="product-img" src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=1974&auto=format&fit=crop" alt="Pastel de chocolate">
+                    <h3>Pastel de Chocolate</h3>
+                    <p class="price">$18.00</p>
+                    <a href="#" class="btn btn-outline">Ver más</a>
+                </div>
+                <div class="product-card">
+                    <img class="product-img" src="https://images.unsplash.com/photo-1568254183919-78a4f43a2877?q=80&w=2070&auto=format&fit=crop" alt="Galletas artesanales">
+                    <h3>Galletas Artesanales</h3>
+                    <p class="price">$6.00</p>
+                    <a href="#" class="btn btn-outline">Ver más</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SOBRE NOSOTROS ===== -->
+    <section class="about" id="nosotros">
+        <div class="container about-flex">
+            <div class="about-text">
+                <h2>Tradición y sabor desde 1990</h2>
+                <div class="divider"></div>
+                <p>En Panadería El Trigal horneamos cada día como si fuera el primero. Nuestro secreto está en la masa madre, el tiempo de fermentación y el cariño que ponemos en cada receta.</p>
+                <p>Utilizamos harinas ecológicas, mantequilla de primera calidad y frutas de temporada para ofrecerte productos frescos, saludables y deliciosos.</p>
+                <a href="#" class="btn">Conoce nuestra historia</a>
+            </div>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1608198093002-ad4e005484ec?q=80&w=2070&auto=format&fit=crop" alt="Panadero amasando pan">
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SERVICIOS ===== -->
+    <section class="services" id="servicios">
+        <div class="container">
+            <div class="section-title">
+                <h2>Lo que ofrecemos</h2>
+                <div class="divider"></div>
+                <p>Mucho más que una panadería: un lugar para disfrutar cada bocado.</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-item">
+                    <i class="fas fa-bread-slice"></i>
+                    <h4>Pan Recién Hecho</h4>
+                    <p>Horneamos varias veces al día para que siempre lo tengas fresco.</p>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-birthday-cake"></i>
+                    <h4>Pasteles Personalizados</h4>
+                    <p>Diseñamos el pastel perfecto para tus celebraciones especiales.</p>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-coffee"></i>
+                    <h4>Cafetería</h4>
+                    <p>Disfruta de un buen café acompañado de nuestros productos.</p>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-truck"></i>
+                    <h4>Delivery a Domicilio</h4>
+                    <p>Recibe tu pedido en casa, fresco y a tiempo, sin costo extra.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TESTIMONIOS ===== -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Lo que dicen nuestros clientes</h2>
+                <div class="divider"></div>
+            </div>
+
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <i class="fas fa-quote-right"></i>
+                    <p>El pan de masa madre es espectacular, crujiente por fuera y suave por dentro. ¡Mi favorito de la ciudad!</p>
+                    <h4>— Laura M.</h4>
+                </div>
+                <div class="testimonial-card">
+                    <i class="fas fa-quote-right"></i>
+                    <p>Encargamos el pastel de cumpleaños de mi hija y superó todas las expectativas. Delicioso y precioso.</p>
+                    <h4>— Andrés R.</h4>
+                </div>
+                <div class="testimonial-card">
+                    <i class="fas fa-quote-right"></i>
+                    <p>Vengo cada mañana por los croissants. La calidad y el trato son inmejorables. ¡Muy recomendados!</p>
+                    <h4>— Sofía G.</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== NEWSLETTER / CONTACTO ===== -->
+    <section class="newsletter" id="contacto">
+        <div class
